@@ -44,4 +44,19 @@
   .searchLink:hover {
     background-color: #2980b9;
   }
+  .goBackLink {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
   
+  .goBackLink:hover {
+    background-color: #2980b9;
+  }
