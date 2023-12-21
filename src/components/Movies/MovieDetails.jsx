@@ -23,7 +23,9 @@ const MovieDetails = () => {
       </h2>
       <b className={styles.voteAverage}>Vote Average: {movieDetails.vote_average}</b>
       <p className={styles.movieOverview}>{movieDetails.overview}</p>
-      <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} className={styles.moviePoster} />
+      {movieDetails.poster_path && (
+        <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} className={styles.moviePoster} />
+      )}
       <b className={styles.runtime}>Runtime: {movieDetails.runtime} minutes</b>
       
       <div className={styles.genres}>
