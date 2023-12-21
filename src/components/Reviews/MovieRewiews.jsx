@@ -19,9 +19,7 @@ const MovieReviews = () => {
   return (
     <div className={styles.reviewsContainer}>
       <h2>Movie Reviews Page</h2>
-      <Link to={`/movies/${movieId}`} className={styles.goBackLink}>
-        Go Back to Movie Details
-      </Link>
+      <Link to={`/movies/${movieId}`}className={`${styles.goBackLink} ${reviews.length === 0 && styles.hiddenLink}`}>Go Back to Movie Details</Link>
       {reviews.length > 0 ? (
         <ul className={styles.reviewList}>
           {reviews.map(review => (
