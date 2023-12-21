@@ -1,0 +1,51 @@
+.creditsContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .creditList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .creditItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .creditImage {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .creditInfo {
+    flex-grow: 1;
+  }
+  
+  .creditName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .creditCharacter {
+    font-size: 16px;
+    color: #555;
+  }
+  .noImagePlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 150px;
+    background-color: #eee;
+    color: #888;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
