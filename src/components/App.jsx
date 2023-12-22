@@ -18,9 +18,9 @@ const Header = () => {
       <nav>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
-          <Link to="/goit-react-hw-05-movies" className={`${styles.navLink} ${isHome ? styles.activeLink : ''}`}>
-            Home
-          </Link>
+            <Link to="/" className={`${styles.navLink} ${isHome ? styles.activeLink : ''}`}>
+              Home
+            </Link>
           </li>
           <li className={styles.navItem}>
             <Link to="/search" className={`${styles.navLink} ${!isHome ? styles.activeLink : ''}`}>
@@ -39,7 +39,7 @@ export const App = () => {
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-        <Route path="/goit-react-hw-05-movies" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/movies/:movieId" element={<MovieDetails />} />
           <Route path="/movies/:movieId/credits" element={<MovieCredits />} />
