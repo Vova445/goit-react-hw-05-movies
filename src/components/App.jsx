@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
@@ -10,13 +10,8 @@ const Search = lazy(() => import('./Search/Search'));
 
 const Header = () => {
   const location = useLocation();
-  const [currentLocation, setCurrentLocation] = useState(location);
+  const isHome = location.pathname === '/';
 
-  useEffect(() => {
-    setCurrentLocation(location);
-  }, [location]);
-
-  const isHome = currentLocation.pathname === '/';
 
   return (
     <header className={styles.header}>
