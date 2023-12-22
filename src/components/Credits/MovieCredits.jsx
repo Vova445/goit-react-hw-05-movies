@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './MovieCredits.module.css';
 
 const MovieCredits = () => {
@@ -16,12 +16,16 @@ const MovieCredits = () => {
       .catch(error => console.error('Error fetching movie credits:', error));
   }, [apiKey, movieId]);
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className={styles.creditsContainer}>
       <h2>Movie Credits Page</h2>
-      <Link to={`/movies/${movieId}`} className={styles.goBackLink}>
-        Go Back to Movie Details
-      </Link>
+      <button onClick={goBack} className={styles.goBackLink}>
+        Go Back
+      </button>
       <ul className={styles.creditList}>
         {credits.map(credit => (
           <li key={credit.credit_id} className={styles.creditItem}>

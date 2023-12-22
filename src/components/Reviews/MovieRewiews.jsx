@@ -16,10 +16,16 @@ const MovieReviews = () => {
       .catch(error => console.error('Error fetching movie reviews:', error));
   }, [apiKey, movieId]);
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className={styles.reviewsContainer}>
       <h2>Movie Reviews Page</h2>
-      <Link to={`/movies/${movieId}`}className={`${styles.goBackLink} ${reviews.length === 0 && styles.hiddenLink}`}>Go Back to Movie Details</Link>
+      <Link to="#" onClick={goBack} className={`${styles.goBackLink} ${reviews.length === 0 && styles.hiddenLink}`}>
+        Go Back to Movie Details
+      </Link>
       {reviews.length > 0 ? (
         <ul className={styles.reviewList}>
           {reviews.map(review => (
@@ -32,7 +38,9 @@ const MovieReviews = () => {
       ) : (
         <div className={styles.noReviews}>
           <p>No reviews available for this movie.</p>
-          <Link to={`/movies/${movieId}`} className={styles.searchLink}>Go Back</Link>
+          <Link to="#" onClick={goBack} className={styles.searchLink}>
+            Go Back
+          </Link>
         </div>
       )}
     </div>

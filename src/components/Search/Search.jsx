@@ -19,6 +19,17 @@ const Search = () => {
       .catch(error => console.error('Error fetching movies:', error));
   }, [query]);
 
+  const handleLinkClick = () => {
+    localStorage.setItem('searchQuery', query);
+  };
+
+  useEffect(() => {
+    const savedQuery = localStorage.getItem('searchQuery');
+    if (savedQuery) {
+      setQuery(savedQuery);
+    }
+  }, []);
+
   return (
     <div className={styles.container}>
       <h2>Movie Search Page</h2>
@@ -31,7 +42,12 @@ const Search = () => {
       <ul className={styles.movieList}>
         {movies.map(movie => (
           <li key={movie.id} className={styles.movieListItem}>
-            <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
+            <Link
+              to={`/movies/${movie.id}`}
+              className={styles.movieLink}
+              state={{ fromSearch: true }}
+              onClick={() => handleLinkClick(movie.id)}
+            >
               {movie.title}
             </Link>
           </li>

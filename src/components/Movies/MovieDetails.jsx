@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import styles from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const { movieId } = useParams();
   const apiKey = 'dc71c629f4ca67f402f49e08e52c86a0';
+  const location = useLocation();
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
@@ -13,11 +14,12 @@ const MovieDetails = () => {
       .then(data => setMovieDetails(data))
       .catch(error => console.error('Error fetching movie details:', error));
   }, [movieId, apiKey]);
+
   const releaseYear = movieDetails.release_date ? movieDetails.release_date.substring(0, 4) : '';
 
   return (
     <div className={styles.movieDetails}>
-      <Link to="/" className={styles.navigationLink}>Go back</Link>
+      <Link to={location.state?.fromSearch ? '/search' : '/'} className={styles.navigationLink}>Go back</Link>
       <h2 className={styles.movieTitle}>
         {movieDetails.title} ({releaseYear})
       </h2>
@@ -37,8 +39,8 @@ const MovieDetails = () => {
         </ul>
       </div>
       <div className={styles.navigationLinks}>
-        <Link to={`/movies/${movieId}/credits`} className={styles.navigationLink}>View Movie Credits</Link>
-        <Link to={`/movies/${movieId}/reviews`} className={styles.navigationLink}>View Movie Reviews</Link>
+        <Link to={{ pathname: `/movies/${movieId}/credits`, state: { fromDetails: true, location } }} className={styles.navigationLink}>View Movie Credits</Link>
+        <Link to={{ pathname: `/movies/${movieId}/reviews`, state: { fromDetails: true, location } }} className={styles.navigationLink}>View Movie Reviews</Link>
       </div>
     </div>
   );
