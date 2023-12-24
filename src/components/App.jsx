@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 const Home = lazy(() => import('./Home/Home'));
@@ -34,7 +34,7 @@ const Header = () => {
 
 export const App = () => {
   return (
-    <Router>
+    <div>
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
@@ -45,6 +45,6 @@ export const App = () => {
           <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />
         </Routes>
       </Suspense>
-    </Router>
+    </div>
   );
 };
