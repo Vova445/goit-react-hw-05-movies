@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import styles from './Header.module.css';
 
 const Home = lazy(() => import('./Home/Home'));
@@ -43,6 +43,7 @@ export const App = () => {
           <Route path="/movies/:movieId" element={<MovieDetails />} />
           <Route path="/movies/:movieId/credits" element={<MovieCredits />} />
           <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
     </div>
