@@ -1,5 +1,5 @@
-import React, { lazy, Suspense} from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 const Home = lazy(() => import('./Home/Home'));
@@ -11,7 +11,6 @@ const Search = lazy(() => import('./Search/Search'));
 const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
-
 
   return (
     <header className={styles.header}>
@@ -40,11 +39,11 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" />} />
           <Route path="/search" element={<Search />} />
           <Route path="/movies/:movieId" element={<MovieDetails />} />
           <Route path="/movies/:movieId/credits" element={<MovieCredits />} />
           <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />
-          <Route path="*" element={<Home />} />
         </Routes>
       </Suspense>
     </Router>

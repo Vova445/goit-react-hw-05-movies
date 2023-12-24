@@ -7,6 +7,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const apiKey = 'dc71c629f4ca67f402f49e08e52c86a0';
   const location = useLocation();
+  const cameBack = location.state?.from ?? '/';
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
@@ -19,7 +20,9 @@ const MovieDetails = () => {
 
   return (
     <div className={styles.movieDetails}>
-      <Link to={location.state?.fromSearch ? '/search' : '/'} className={styles.navigationLink}>Go back</Link>
+      <Link to={cameBack} className={styles.navigationLink}>
+        Go back
+      </Link>
       <h2 className={styles.movieTitle}>
         {movieDetails.title} ({releaseYear})
       </h2>
@@ -29,18 +32,31 @@ const MovieDetails = () => {
         <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} className={styles.moviePoster} />
       )}
       <b className={styles.runtime}>Runtime: {movieDetails.runtime} minutes</b>
-      
+
       <div className={styles.genres}>
         <p className={styles.genresTitle}>Genres:</p>
         <ul className={styles.genreList}>
-          {movieDetails.genres && movieDetails.genres.map(genre => (
-            <li key={genre.id} className={styles.genre}>{genre.name}</li>
-          ))}
+          {movieDetails.genres &&
+            movieDetails.genres.map(genre => (
+              <li key={genre.id} className={styles.genre}>
+                {genre.name}
+              </li>
+            ))}
         </ul>
       </div>
       <div className={styles.navigationLinks}>
-        <Link to={{ pathname: `/movies/${movieId}/credits`, state: { fromDetails: true, location } }} className={styles.navigationLink}>View Movie Credits</Link>
-        <Link to={{ pathname: `/movies/${movieId}/reviews`, state: { fromDetails: true, location } }} className={styles.navigationLink}>View Movie Reviews</Link>
+        <Link
+          to={{ pathname: `/movies/${movieId}/credits`, state: { from: cameBack }}}
+          className={styles.navigationLink}
+        >
+          View Movie Credits
+        </Link>
+        <Link
+          to={{ pathname: `/movies/${movieId}/reviews`, state: { from: cameBack } }}
+          className={styles.navigationLink}
+        >
+          View Movie Reviews
+        </Link>
       </div>
     </div>
   );
