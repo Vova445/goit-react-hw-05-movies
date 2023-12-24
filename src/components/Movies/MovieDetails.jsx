@@ -26,7 +26,7 @@ const MovieDetails = () => {
       <h2 className={styles.movieTitle}>
         {movieDetails.title} ({releaseYear})
       </h2>
-      <b className={styles.userScore}>User Score: {movieDetails.vote_average * 10}%</b>
+      <b className={styles.userScore}>User Score: {(movieDetails.vote_average * 10).toFixed(1)}%</b>
       <p className={styles.movieOverview}>{movieDetails.overview}</p>
       {movieDetails.poster_path && (
         <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} className={styles.moviePoster} />
